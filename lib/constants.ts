@@ -35,10 +35,10 @@ export const TELEMETRY_LABELS = [
 ] as const
 
 export const NAV_ITEMS = [
-  { label: 'PRODUCT', href: '#product' },
-  { label: 'FEATURES', href: '#features' },
+  { label: 'PRODUCT', href: '/' },
+  { label: 'FEATURES', href: '/features' },
   { label: 'ENTERPRISE', href: LINKS.enterprise },
-  { label: 'DOCS', href: LINKS.docs },
+  { label: 'DOCS', href: '/docs' },
 ] as const
 
 export const FEATURE_NODES = [

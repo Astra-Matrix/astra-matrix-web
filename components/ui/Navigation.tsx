@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { Terminal, Cpu } from 'lucide-react'
 import { NAV_ITEMS, BRAND } from '@/lib/constants'
 
@@ -32,16 +33,19 @@ export default function Navigation() {
       {/* Primary nav links — hidden on small screens */}
       <div className="hidden md:flex items-center gap-8">
         {NAV_ITEMS.map((item, i) => (
-          <motion.a
+          <motion.div
             key={item.label}
-            href={item.href}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1 * i + 0.3, duration: 0.4 }}
-            className="font-mono text-[10px] tracking-[0.28em] text-neonCyan/45 hover:text-neonCyan transition-colors duration-200 uppercase"
           >
-            {item.label}
-          </motion.a>
+            <Link
+              href={item.href}
+              className="font-mono text-[10px] tracking-[0.28em] text-neonCyan/45 hover:text-neonCyan transition-colors duration-200 uppercase"
+            >
+              {item.label}
+            </Link>
+          </motion.div>
         ))}
       </div>
 
