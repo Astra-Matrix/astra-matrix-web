@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --obsidian: #121214;
+  --slate: #1a1a1e;
+  --neon-cyan: #00f0ff;
+  --industrial-amber: #ff9900;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background-color: #121214;
+  color: #00f0ff;
+  font-family: 'JetBrains Mono', 'Share Tech Mono', monospace;
+}
+
+/* Scanline CRT overlay — purely decorative */
+.scanlines::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 240, 255, 0.012) 2px,
+    rgba(0, 240, 255, 0.012) 4px
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Neon text glow utilities */
+.neon-glow {
+  text-shadow:
+    0 0 10px rgba(0, 240, 255, 0.8),
+    0 0 20px rgba(0, 240, 255, 0.5),
+    0 0 40px rgba(0, 240, 255, 0.3);
+}
+
+.amber-glow {
+  text-shadow:
+    0 0 10px rgba(255, 153, 0, 0.8),
+    0 0 20px rgba(255, 153, 0, 0.5),
+    0 0 40px rgba(255, 153, 0, 0.3);
+}
+
+/* @react-three/xr VRButton override — repositioned and re-skinned */
+#VRButton {
+  position: fixed !important;
+  bottom: 2rem !important;
+  right: 2rem !important;
+  z-index: 20 !important;
+  background: rgba(0, 240, 255, 0.06) !important;
+  border: 1px solid rgba(0, 240, 255, 0.4) !important;
+  color: #00f0ff !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.18em !important;
+  padding: 0.625rem 1.25rem !important;
+  cursor: pointer !important;
+  text-transform: uppercase !important;
+  transition: background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+#VRButton:hover {
+  background: rgba(0, 240, 255, 0.14) !important;
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.35) !important;
+}
+
+/* Thin custom scrollbar for any rare overflow regions */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #121214;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.2);
+  border-radius: 2px;
+}
