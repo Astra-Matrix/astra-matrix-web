@@ -93,3 +93,192 @@ body {
   background: rgba(0, 240, 255, 0.2);
   border-radius: 2px;
 }
+
+/* ────────────────────────────────────────────────────────────────────────────
+   GLASS PANELS — gunmetal / adobe-mud tinted, semi-transparent, blurred,
+   with a subtle vibrant colorful "static" edge.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.glass {
+  position: relative;
+  /* Gunmetal grey with a warm adobe-mud undertone, kept translucent */
+  background: linear-gradient(
+    135deg,
+    rgba(38, 36, 34, 0.55) 0%,
+    rgba(26, 26, 30, 0.62) 100%
+  );
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+}
+
+/* Vibrant colorful static edge — an animated conic gradient ring drawn
+   only on the border via mask compositing. Sits behind panel content. */
+.glass-edge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--edge-angle, 0deg),
+    rgba(0, 240, 255, 0.0) 0deg,
+    rgba(0, 240, 255, 0.9) 60deg,
+    rgba(255, 153, 0, 0.7) 140deg,
+    rgba(180, 80, 255, 0.6) 220deg,
+    rgba(0, 240, 255, 0.9) 300deg,
+    rgba(0, 240, 255, 0.0) 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.55;
+  pointer-events: none;
+  animation: edge-rotate 8s linear infinite;
+}
+
+@property --edge-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes edge-rotate {
+  to {
+    --edge-angle: 360deg;
+  }
+}
+
+/* Fallback shimmer for browsers without @property support */
+.glass-edge-static::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    120deg,
+    rgba(0, 240, 255, 0.5),
+    rgba(255, 153, 0, 0.35),
+    rgba(180, 80, 255, 0.4),
+    rgba(0, 240, 255, 0.5)
+  );
+  background-size: 300% 300%;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.4;
+  pointer-events: none;
+  animation: edge-shimmer 6s ease infinite;
+}
+
+@keyframes edge-shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   NEON WORDART — large vibrant link typography
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.neon-wordart {
+  color: #aef9ff;
+  text-shadow:
+    0 0 4px rgba(0, 240, 255, 0.9),
+    0 0 11px rgba(0, 240, 255, 0.7),
+    0 0 22px rgba(0, 240, 255, 0.5),
+    0 0 44px rgba(0, 240, 255, 0.3);
+  transition: text-shadow 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.neon-wordart:hover {
+  color: #ffffff;
+  text-shadow:
+    0 0 6px rgba(0, 240, 255, 1),
+    0 0 16px rgba(0, 240, 255, 0.9),
+    0 0 32px rgba(0, 240, 255, 0.7),
+    0 0 64px rgba(0, 240, 255, 0.5),
+    0 0 96px rgba(0, 240, 255, 0.3);
+}
+
+.neon-wordart-amber {
+  color: #ffd9a3;
+  text-shadow:
+    0 0 4px rgba(255, 153, 0, 0.9),
+    0 0 11px rgba(255, 153, 0, 0.7),
+    0 0 22px rgba(255, 153, 0, 0.5),
+    0 0 44px rgba(255, 153, 0, 0.3);
+  transition: text-shadow 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.neon-wordart-amber:hover {
+  color: #ffffff;
+  text-shadow:
+    0 0 6px rgba(255, 153, 0, 1),
+    0 0 16px rgba(255, 153, 0, 0.9),
+    0 0 32px rgba(255, 153, 0, 0.7),
+    0 0 64px rgba(255, 153, 0, 0.5);
+}
+
+/* Subtle flicker for that powered-neon-sign feel */
+@keyframes neon-flicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  24%,
+  55% {
+    opacity: 0.82;
+  }
+}
+
+.neon-flicker {
+  animation: neon-flicker 6s infinite;
+}
+
+/* High-legibility body text on glass — clear and visible per spec */
+.glass-text {
+  color: rgba(225, 250, 255, 0.92);
+}
+.glass-text-dim {
+  color: rgba(180, 215, 225, 0.6);
+}
+
+/* Allow vertical scrolling on content pages even though body is hidden */
+.page-scroll {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-edge::before,
+  .glass-edge-static::before,
+  .neon-flicker {
+    animation: none;
+  }
+}

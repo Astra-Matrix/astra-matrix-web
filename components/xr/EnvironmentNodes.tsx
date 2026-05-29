@@ -1,6 +1,7 @@
 'use client'
 
-import { Stars, Grid } from '@react-three/drei'
+import { Stars, Grid, Cloud, Clouds } from '@react-three/drei'
+import * as THREE from 'three'
 import { SCENE_CONFIG, PALETTE } from '@/lib/constants'
 
 export default function EnvironmentNodes() {
@@ -9,41 +10,58 @@ export default function EnvironmentNodes() {
       {/* Atmospheric depth fog — matches obsidian background */}
       <fog attach="fog" args={[SCENE_CONFIG.fogColor, SCENE_CONFIG.fogNear, SCENE_CONFIG.fogFar]} />
 
-      {/* Very dim cyan ambient to keep scene readable without washing it out */}
-      <ambientLight intensity={0.04} color={PALETTE.neonCyan} />
+      {/* Ambient base — cold cyan */}
+      <ambientLight intensity={0.06} color={PALETTE.neonCyan} />
 
-      {/* Key fill from above — simulates cold overhead industrial lighting */}
-      <pointLight
-        position={[0, 10, 0]}
-        intensity={0.35}
+      {/* Overhead key light */}
+      <pointLight position={[0, 12, 0]} intensity={0.45} color={PALETTE.neonCyan} distance={40} decay={2} />
+
+      {/* Warm amber rim from below-left */}
+      <pointLight position={[-14, -6, -16]} intensity={0.22} color={PALETTE.industrialAmber} distance={30} decay={2} />
+
+      {/* Magenta accent fill from the right for color variety */}
+      <pointLight position={[16, 4, -8]} intensity={0.16} color={'#b450ff'} distance={30} decay={2} />
+
+      {/* Moving spotlight to animate highlights across geometry */}
+      <spotLight
+        position={[0, 8, 10]}
+        angle={0.6}
+        penumbra={1}
+        intensity={0.4}
         color={PALETTE.neonCyan}
-        distance={35}
-        decay={2}
+        distance={50}
       />
 
-      {/* Rim accent from lower-left — warm amber counterbalance */}
-      <pointLight
-        position={[-12, -6, -14]}
-        intensity={0.18}
-        color={PALETTE.industrialAmber}
-        distance={25}
-        decay={2}
-      />
+      {/* Deep-space star field */}
+      <Stars radius={100} depth={70} count={3500} factor={2.6} saturation={0} fade speed={0.3} />
 
-      {/* Deep-space star field backdrop */}
-      <Stars
-        radius={90}
-        depth={60}
-        count={2500}
-        factor={2.2}
-        saturation={0}
-        fade
-        speed={0.25}
-      />
+      {/* Volumetric neon nebula clouds for depth */}
+      <Clouds material={THREE.MeshBasicMaterial} limit={40}>
+        <Cloud
+          seed={1}
+          segments={22}
+          bounds={[26, 8, 26]}
+          volume={9}
+          color={PALETTE.neonCyan}
+          opacity={0.05}
+          fade={60}
+          position={[0, -3, -14]}
+        />
+        <Cloud
+          seed={2}
+          segments={18}
+          bounds={[22, 6, 22]}
+          volume={7}
+          color={'#b450ff'}
+          opacity={0.035}
+          fade={50}
+          position={[8, 2, -18]}
+        />
+      </Clouds>
 
-      {/* Horizontal coordinate grid at floor level */}
+      {/* Floor coordinate grid */}
       <Grid
-        position={[0, -4.5, 0]}
+        position={[0, -5, 0]}
         args={[SCENE_CONFIG.gridSize, SCENE_CONFIG.gridSize]}
         cellSize={1}
         cellThickness={0.4}
@@ -51,8 +69,24 @@ export default function EnvironmentNodes() {
         sectionSize={5}
         sectionThickness={0.9}
         sectionColor={PALETTE.neonCyan}
-        fadeDistance={28}
+        fadeDistance={34}
         fadeStrength={2.5}
+        followCamera={false}
+        infiniteGrid
+      />
+
+      {/* Ceiling coordinate grid — mirrored, fainter, completes the "chamber" */}
+      <Grid
+        position={[0, 9, 0]}
+        args={[SCENE_CONFIG.gridSize, SCENE_CONFIG.gridSize]}
+        cellSize={2}
+        cellThickness={0.3}
+        cellColor={PALETTE.industrialAmber}
+        sectionSize={10}
+        sectionThickness={0.6}
+        sectionColor={PALETTE.industrialAmber}
+        fadeDistance={30}
+        fadeStrength={3}
         followCamera={false}
         infiniteGrid
       />

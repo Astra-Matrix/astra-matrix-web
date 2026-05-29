@@ -30,9 +30,9 @@ export const LINKS = {
 } as const
 
 export const NAV_ITEMS = [
-  { label: 'WORK', href: '/features' },
+  { label: 'SOFTWARE', href: '/software' },
+  { label: 'VISIONS', href: '/visions' },
   { label: 'DOCS', href: '/docs' },
-  { label: 'CONTACT', href: LINKS.enterprise },
 ] as const
 
 // ── Narrative ─────────────────────────────────────────────────────────────────
@@ -210,3 +210,171 @@ export const STUDIO_METRICS = [
   { label: 'ENGINEERS', value: '8', unit: 'ARCHITECTS' },
   { label: 'YEARS OPERATING', value: '6+', unit: 'IN THE FIELD' },
 ] as const
+
+// ── Flagship product: Vectra XR ────────────────────────────────────────────────
+
+export const VECTRA_PRODUCT = {
+  name: 'VECTRA XR',
+  codename: 'PROJECT THRESHOLD',
+  status: 'AVAILABLE NOW',
+  platform: 'META QUEST 3 · HORIZON OS',
+  version: 'v2.4.1',
+  tagline: 'The Native Spatial Supply Chain & Hardware Diagnostics Visor.',
+  summary:
+    'Vectra XR is our debut commercial release — a fully native spatial computing application engineered directly on the Meta Spatial SDK. It transforms the physical-to-digital workflow into a single immersive layer: scan hardware with passthrough cameras, pin live telemetry dashboards into 3D space, and synchronize everything to an immutable decentralized ledger. No game engine. No compromise. Production-grade.',
+  highlights: [
+    {
+      title: 'Spatial Anchoring',
+      detail: 'Pin telemetry dashboards directly to physical hardware with sub-centimeter persistence across sessions.',
+    },
+    {
+      title: 'ML Vision Pipeline',
+      detail: 'On-device QR and barcode decoding through passthrough cameras in under 80ms — zero network dependency.',
+    },
+    {
+      title: 'Live Diagnostics',
+      detail: 'Real-time voltage, temperature, and maintenance state streamed over BLE from embedded telemetry modules.',
+    },
+    {
+      title: 'Metastrate Ledger',
+      detail: 'Every scan and state change written as a signed, tamper-evident transaction to the decentralized substrate.',
+    },
+  ],
+  specs: [
+    { label: 'PLATFORM', value: 'Meta Quest 3' },
+    { label: 'RUNTIME', value: 'Horizon OS · API 63' },
+    { label: 'ENGINE', value: 'Meta Spatial SDK 0.5' },
+    { label: 'LATENCY', value: '< 2ms telemetry' },
+    { label: 'SIZE', value: '184 MB' },
+    { label: 'PRICE', value: 'Enterprise license' },
+  ],
+  links: {
+    questStore: '#quest-store-pending',
+    docs: '/docs',
+    sideload: '#sideload-pending',
+  },
+} as const
+
+// ── GitHub showcase (Visions page) ─────────────────────────────────────────────
+
+export const GITHUB_PROJECTS = [
+  {
+    name: 'VYB',
+    description:
+      'The next-generation game creation environment for designers, developers, artists, worldbuilders, and AI-assisted creators.',
+    language: 'TypeScript',
+    url: 'https://github.com/Astra-Matrix/VYB',
+    tag: 'CREATIVE ENGINE',
+    accent: 'cyan',
+  },
+  {
+    name: 'DEMIURGE-PROTOCOL',
+    description:
+      'A Gnostic-inspired L1 gamified blockchain ecosystem with a next-generation Creator God Token (CGT) wallet — mining made fun.',
+    language: 'TypeScript',
+    url: 'https://github.com/Astra-Matrix/DEMIURGE-PROTOCOL',
+    tag: 'BLOCKCHAIN',
+    accent: 'amber',
+  },
+  {
+    name: 'DS-AgentFoundry',
+    description: 'Digital Sovereign Society — a decentralized agent economy framework.',
+    language: 'HTML',
+    url: 'https://github.com/Astra-Matrix/DS-AgentFoundry',
+    tag: 'AGENT ECONOMY',
+    accent: 'cyan',
+  },
+  {
+    name: 'arqyv',
+    description: 'The ultimate data tool — high-throughput ingestion, transformation, and archival.',
+    language: 'Python',
+    url: 'https://github.com/Astra-Matrix/arqyv',
+    tag: 'DATA SYSTEMS',
+    accent: 'cyan',
+  },
+  {
+    name: 'spark',
+    description: 'A cyberpunk dating app built with Next.js 15 — connection at the edge of the grid.',
+    language: 'TypeScript',
+    url: 'https://github.com/Astra-Matrix/spark',
+    tag: 'CONSUMER APP',
+    accent: 'amber',
+  },
+  {
+    name: 'SuperHDE',
+    description:
+      'Mologie Detours — a cross-platform x86 / x86-64 hacker disassembly engine. MIT licensed.',
+    language: 'C++',
+    url: 'https://github.com/Astra-Matrix/SuperHDE',
+    tag: 'LOW-LEVEL',
+    accent: 'cyan',
+  },
+  {
+    name: 'killnode',
+    description: 'A precision tooling experiment for runtime process control and orchestration.',
+    language: 'TypeScript',
+    url: 'https://github.com/Astra-Matrix/killnode',
+    tag: 'INFRASTRUCTURE',
+    accent: 'cyan',
+  },
+  {
+    name: 'astra-matrix-web',
+    description:
+      'This portal. A WebXR-immersive corporate site built with Next.js, React Three Fiber, and @react-three/xr.',
+    language: 'TypeScript',
+    url: 'https://github.com/Astra-Matrix/astra-matrix-web',
+    tag: 'WEBXR',
+    accent: 'amber',
+  },
+] as const
+
+// ── Footer: virtual company formation, policies, links ─────────────────────────
+
+export const FOOTER = {
+  formation: [
+    { label: 'Entity', value: 'Astra Matrix, Inc.' },
+    { label: 'Jurisdiction', value: 'Delaware C-Corp' },
+    { label: 'Founded', value: '2020 — Distributed' },
+    { label: 'Registry', value: 'EIN ██-███████' },
+  ],
+  columns: [
+    {
+      heading: 'STUDIO',
+      links: [
+        { label: 'Software', href: '/software' },
+        { label: 'Visions', href: '/visions' },
+        { label: 'Developer Docs', href: '/docs' },
+        { label: 'The Architects', href: '/features' },
+      ],
+    },
+    {
+      heading: 'LEGAL',
+      links: [
+        { label: 'Terms of Service', href: '#terms-pending' },
+        { label: 'Privacy Policy', href: '#privacy-pending' },
+        { label: 'Acceptable Use', href: '#aup-pending' },
+        { label: 'Data Processing', href: '#dpa-pending' },
+      ],
+    },
+    {
+      heading: 'GOVERNANCE',
+      links: [
+        { label: 'Security Disclosure', href: '#security-pending' },
+        { label: 'Open Source Licenses', href: '#licenses-pending' },
+        { label: 'Code of Conduct', href: '#coc-pending' },
+        { label: 'Accessibility', href: '#a11y-pending' },
+      ],
+    },
+    {
+      heading: 'CONNECT',
+      links: [
+        { label: 'GitHub', href: 'https://github.com/Astra-Matrix' },
+        { label: 'Developer Program', href: '/visions' },
+        { label: 'Open a Channel', href: 'mailto:contact@astramatrix.io' },
+        { label: 'Status', href: '#status-pending' },
+      ],
+    },
+  ],
+} as const
+
+export const DEV_PROGRAM_DOC = '/astra-matrix-developer-program.md'
