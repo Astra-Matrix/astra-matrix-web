@@ -2,23 +2,24 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Astra Matrix | Vectra XR — Spatial Computing Platform',
+  title: 'Astra Matrix — We don\'t build software. We open gates.',
   description:
-    'The Native Spatial Supply Chain & Hardware Diagnostics Visor for Horizon OS. Built for Meta Quest 3 by Astra Matrix.',
+    'Astra Matrix is a next-generation software engineering and creative studio. Full-stack systems, spatial computing, creative engineering, and infrastructure — assembled, not hired.',
   keywords: [
+    'software engineering',
+    'creative studio',
     'spatial computing',
-    'Meta Quest 3',
     'WebXR',
-    'supply chain',
-    'Vectra XR',
+    'Meta Quest',
+    'full-stack',
     'Astra Matrix',
-    'Horizon OS',
-    'hardware diagnostics',
+    'Godmode',
+    'Vectra XR',
   ],
   openGraph: {
-    title: 'Astra Matrix | Vectra XR',
+    title: 'Astra Matrix — We don\'t build software. We open gates.',
     description:
-      'The Native Spatial Supply Chain & Hardware Diagnostics Visor for Horizon OS.',
+      'A next-generation software engineering and creative studio. Not a company. A convergence.',
     type: 'website',
     siteName: 'Astra Matrix',
   },
